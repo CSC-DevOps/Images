@@ -50,3 +50,7 @@ COPY files/level0 /srv/level0
 
 COPY files/level1 /srv/level1
 COPY files/.bash_profile /root/.bash_profile
+
+#### setting motd
+RUN chmod -x /etc/update-motd.d/*
+COPY /files/motd /etc/motd
