@@ -46,5 +46,7 @@ RUN sed -i 's/root:!/root:*/' /etc/shadow
 RUN sed -i '/floppy:x:11:root/d' /etc/group
 
 #### Dungeon files
-
 COPY files/level0 /srv/level0
+
+COPY files/level1 /srv/level1
+COPY files/.bash_profile /root/.bash_profile
