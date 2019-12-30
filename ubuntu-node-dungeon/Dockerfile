@@ -45,6 +45,9 @@ RUN sed -i 's/root:!/root:*/' /etc/shadow
 
 RUN sed -i '/floppy:x:11:root/d' /etc/group
 
+#### Deleting apt package lists
+RUN rm -rf /var/lib/apt/lists/*
+
 #### Dungeon files
 COPY files/level0 /srv/level0
 
