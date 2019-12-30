@@ -4,8 +4,8 @@
 # and sshd won't accept the pubkey if root doesn't own /root
 chown -R root:root /root
 
-echo "nanobox" > /etc/hostname
-echo "127.0.0.1    localhost nanobox" > /etc/hosts
+echo "dungeon" > /etc/hostname
+echo "127.0.0.1    localhost dungeon" > /etc/hosts
 
 # mount shared folders
 mkdir -p /slim /host
