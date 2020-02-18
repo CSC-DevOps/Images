@@ -1,0 +1,34 @@
+{
+  "variables": {
+    "home": "{{ env `HOME` }}"
+  },
+  "builders": [
+  {
+    "type": "virtualbox-ovf",
+    "source_path": "{{user `home`}}/.bakerx/.persist/images/bionic/box.ovf",
+    "ssh_username": "vagrant",
+    "ssh_private_key_file": "~/.bakerx/insecure_private_key",
+    "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--boot1", "disk", "--biosbootmenu", "disabled"],
+      ["modifyvm", "{{.Name}}", "--memory", "2048"],
+      ["modifyvm", "{{.Name}}", "--cpus", "2"],
+      ["modifyvm", "{{.Name}}", "--nic1", "nat", "--nictype1", "virtio"],
+      ["modifyvm", "{{.Name}}", "--uart1", "0x3f8", "4", "--uartmode1", "disconnected"]
+    ]
+  }],
+  "post-processors": [
+    {
+      "output": "jenkins.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+  {
+    "expect_disconnect": true,
+    "scripts": [
+      "{{template_dir}}/scripts/jenkins.sh"
+    ],
+    "type": "shell"
+  }]    
+}
