@@ -47,3 +47,9 @@ RUN echo $SSHPUBKEY > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authori
 
 # Fix ssh
 RUN sed -i 's/root:!/root:*/' /etc/shadow
+
+########
+########
+COPY files/app /app
+RUN npm install forever -g
+RUN cd app; npm install
