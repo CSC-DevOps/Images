@@ -17,7 +17,7 @@ EOF
 # redis
 sudo apt-get -y install redis-server
 sudo sed -i 's/supervised no/supervised systemd/g' /etc/redis/redis.conf
-
+sudo sed -i 's/bind 127.0.0.1 ::1/bind 0.0.0.0 ::\/0/g' /etc/redis/redis.conf
 
 # Nodejs
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
