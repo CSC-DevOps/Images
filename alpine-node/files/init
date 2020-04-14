@@ -111,4 +111,8 @@ mount -t 9p -o trans=virtio share1 /host || mount.vboxsf vbox-share-1 /host || t
 # start default openrc level
 /sbin/openrc default
 
+# launch node service
+forever start /app/server.js
+
+# pivot to start process
 exec /sbin/init
