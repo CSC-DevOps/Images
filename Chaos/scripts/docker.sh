@@ -25,6 +25,6 @@ sudo curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
 
 # Build image
-sudo docker build app/ -t app-server
+sudo docker build /app -t app-server
 
 
