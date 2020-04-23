@@ -24,18 +24,24 @@
     }
   ],
   "provisioners": [
-  {
-    "expect_disconnect": true,
-    "scripts": [
-      "{{template_dir}}/scripts/docker.sh"
-    ],
-    "type": "shell"
-  },
-  {
-    "type": "file",
-    "source": "{{template_dir}}/app/",
-    "destination": "/app"
-  }
-
+    {
+      "type": "shell",
+      "inline": [
+        "sudo mkdir -p /app",
+        "sudo chown vagrant:vagrant /app"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "{{template_dir}}/app/",
+      "destination": "/app"
+    },
+    {
+      "expect_disconnect": true,
+      "scripts": [
+        "{{template_dir}}/scripts/docker.sh"
+      ],
+      "type": "shell"
+    }
 ]    
 }

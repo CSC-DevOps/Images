@@ -18,11 +18,13 @@ EOF
 # NodeJs
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install nodejs -y
+sudo npm install forever -g
 
 # Docker
 sudo curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
 
-# Prepare directory for files
-sudo mkdir -p /app
-sudo chown vagrant:vagrant /app
+# Build image
+sudo docker build app/ -t app-server
+
+
