@@ -20,9 +20,9 @@ process.on('SIGINT', function() {
 
 function createInstances()
 {
-    child.execSync("docker run --rm --name app1 -d -p 127.0.0.1:3005:80/tcp app-server")
-    child.execSync("docker run --rm --name app2 -d -p 127.0.0.1:3006:80/tcp app-server")
-    child.execSync("docker run --rm --name app3 -d -p 127.0.0.1:3007:80/tcp app-server")
+    child.execSync("docker run --rm --name app1 -d -p 127.0.0.1:3005:3000/tcp app-server")
+    child.execSync("docker run --rm --name app2 -d -p 127.0.0.1:3006:3000/tcp app-server")
+    child.execSync("docker run --rm --name app3 -d -p 127.0.0.1:3007:3000/tcp app-server")
 }
 let node2Url = {app1: 'localhost:3005', app2: 'localhost:3006', app3: 'localhost:3007' };
 let timings = {
