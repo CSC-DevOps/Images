@@ -70,30 +70,28 @@ function main()
         shiftOnServe();
         res.end(`Target failed`);
     });
-   
-    //
-    // Listen for the `proxyRes` event on `proxy`.
-    //
+
+    // Add useful headers on request before it is sent.
+    proxy.on('proxyReq', function (proxyReq, req, res, options) {
+        // console.log('Req', options.target);
+        req.headers['target'] = options.target.host;
+        req.headers["startTime"] = new Date();
+    });
+
+    // Store timing statistics on request
     proxy.on('proxyRes', function (proxyRes, req, res) {
-        console.log('RAW Response from the target', JSON.stringify(proxyRes.headers, true, 2));
-        console.log('Req', JSON.stringify(req.headers, true, 2));
+        // console.log('RAW Response from the target', JSON.stringify(proxyRes.headers, true, 2));
+        // console.log('Req', JSON.stringify(req.headers, true, 2));
 
         // Request time
         let elaspedTime = new Date() - new Date( req.headers.startTime );
-        console.log(`elaspedTime: ${elaspedTime}`);
+        // console.log(`elaspedTime: ${elaspedTime}`);
 
         // Store statistics
         let target = req.headers["target"];
-        console.log( target );
+        // console.log( target );
         timings[target].push( elaspedTime );
 
-    });
-
-    // Set start timing on header.
-    proxy.on('proxyReq', function (proxyReq, req, res, options) {
-        console.log('Req', options.target);
-        req.headers['target'] = options.target.host;
-        req.headers["startTime"] = new Date();
     });
 
 
