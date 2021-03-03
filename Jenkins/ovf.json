@@ -14,7 +14,7 @@
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
       ["modifyvm", "{{.Name}}", "--cpus", "2"],
       ["modifyvm", "{{.Name}}", "--nic1", "nat", "--nictype1", "virtio"],
-      ["modifyvm", "{{.Name}}", "--uart1", "0x3f8", "4", "--uartmode1", "disconnected"]
+      ["modifyvm", "{{.Name}}", "--uart1", "0x3f8", "4", "--uartmode1", "file", "/tmp/packer-build-logs"]
     ]
   }],
   "post-processors": [
